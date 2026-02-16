@@ -13,6 +13,7 @@ public class ProductService {
     public void addProduct() {
         Product product = new Product();
         product.setProductName("Harry Potter");
+        product.setProductPrice(8.3);
         productRepository.save(product);
     }
 

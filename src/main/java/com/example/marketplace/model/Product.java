@@ -12,6 +12,7 @@ public class Product {
     private int productId;
 
     private String productName;
+    private double productPrice;
 
     public String getProductName() {
         return productName;
@@ -19,5 +20,13 @@ public class Product {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
     }
 }
