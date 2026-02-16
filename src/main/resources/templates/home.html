@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>Book Shop Home</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
+
     <a href="/login">Login</a>
     <a href="/cart">Cart</a>
     <a href="/order/history">Order History</a>
-    <h1>This is the Home Page</h1>
-    <p>Book Shop</p>
+    <h1>Welcome to the Book Shop</h1>
+
+    <section>
+        <h2>Available Books</h2>
+        <div th:each="product : ${products}" class="product-card">
+            <a th:href="@{'/products/detail/' + ${product.productId}}">
+                <img th:src="@{'/images/' + ${product.imageName}}" alt="Book Image">
+            </a>
+            <p><strong th:text="${product.productName}">Book Name</strong</p>
+            <p>Price: €<span th:text="${product.productPrice}">0.00</span></p>
+        </div>
+    </section>
+
 </body>
 </html>
