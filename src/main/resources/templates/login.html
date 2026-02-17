@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -7,11 +7,15 @@
 <body>
     <h1>Login</h1>
 
-    <form>
-        <input type="text" name="username" placeholder="Username"><br>
-        <input type="password" name="password" placeholder="Password"><br>
+    <form th:action="@{/login}" th:object="${user}" method="post">
+        <input th:field="*{username}" placeholder="Username"><br>
+        <input th:field="*{password}" placeholder="Password"><br>
         <button type="submit">Sign In</button><br>
         <a href="/register">Create Account</a>
     </form>
+
+    <script th:inline="javascript" th:if="${loginError}">
+        alert('[[${loginError}]]');
+    </script>
 </body>
 </html>
