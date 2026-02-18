@@ -23,7 +23,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("user") ShopUser user,Model model, HttpSession session) {
+    public String login(@ModelAttribute("user") ShopUser user, Model model, HttpSession session) {
         ShopUser currentUser = shopUserService.login(user.getUsername(), user.getPassword());
         if (currentUser != null) {
             session.setAttribute("user", currentUser);

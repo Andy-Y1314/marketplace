@@ -11,7 +11,7 @@
         <input th:field="*{username}" placeholder="Username"><br>
         <input th:field="*{password}" placeholder="Password"><br>
         <button type="submit">Sign In</button><br>
-        <a href="/register">Create Account</a>
+        <a th:href="@{/register}">Create Account</a>
     </form>
 
     <script th:inline="javascript" th:if="${loginError}">

@@ -11,7 +11,7 @@
         <input type="text" th:field="*{username}" placeholder="Username"><br>
         <input type="password" th:field="*{password}" placeholder="Password"><br>
         <button type="submit">Register</button><br>
-        <a href="/login">Already have an account?</a>
+        <a th:href="@{/login}">Already have an account?</a>
     </form>
 </body>
 </html>
