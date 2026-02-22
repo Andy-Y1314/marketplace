@@ -20,6 +20,6 @@ public class HomeController {
     @GetMapping("/addProduct")
     public String addProduct() {
         productService.addProduct();
-        return "home";
+        return "redirect:/";
     }
 }

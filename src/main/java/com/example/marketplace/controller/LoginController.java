@@ -27,7 +27,11 @@ public class LoginController {
         ShopUser currentUser = shopUserService.login(user.getUsername(), user.getPassword());
         if (currentUser != null) {
             session.setAttribute("user", currentUser);
-            return "redirect:/";
+            if (currentUser.isAdmin()) {
+                return "redirect:/admin/products";
+            } else {
+                return "redirect:/";
+            }
         }
         model.addAttribute("loginError", "Invalid username or password");
         return "login";

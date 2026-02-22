@@ -12,23 +12,35 @@
             <strong>
                 Welcome, <span th:text="${session.user.username}">User</span>
             </strong>
+
+            <span th:if="${session.user.admin}">
+                <a th:href="@{/admin/products}">Manage Products</a>
+            </span>
+
+            <span th:if="${!session.user.admin}">
+                <a th:href="@{/cart}">Cart</a>
+                <a th:href="@{/order/history}">Order History</a>
+            </span>
+
             <a th:href="@{/logout}">Logout</a>
         </span>
+
         <span th:if="${session.user == null}">
             <a th:href="@{/login}">Login</a>
+            <a th:href="@{/cart}">Cart</a>
         </span>
-        <a th:href="@{/cart}">Cart</a>
-        <a th:href="@{/order/history}">Order History</a>
     </div>
 
     <section>
         <h2>Available Books</h2>
-        <div th:each="product : ${products}" class="product-card">
-            <a th:href="@{'/products/detail/' + ${product.productId}}">
-                <img th:src="@{'/images/' + ${product.imageName}}" alt="Book Image">
-            </a>
-            <p><strong th:text="${product.productName}">Book Name</strong></p>
-            <p>Price: €<span th:text="${product.productPrice}">0.00</span></p>
+        <div class="product-container">
+            <div th:each="product : ${products}" class="product-card">
+                <a th:href="@{'/products/detail/' + ${product.productId}}">
+                    <img th:src="@{'/images/' + ${product.imageName}}" alt="Book Image">
+                </a>
+                <p><strong th:text="${product.productName}">Book Name</strong></p>
+                <p>Price: €<span th:text="${product.productPrice}">0.00</span></p>
+            </div>
         </div>
     </section>
 
