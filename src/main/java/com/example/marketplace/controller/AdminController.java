@@ -1,5 +1,6 @@
 package com.example.marketplace.controller;
 
+import com.example.marketplace.model.Product;
 import com.example.marketplace.model.ShopUser;
 import com.example.marketplace.service.ProductService;
 import jakarta.servlet.http.HttpSession;
@@ -21,9 +22,10 @@ public class AdminController {
     }
 
     @GetMapping
-    public String viewProducts(HttpSession session, Model model) {
+    public String adminPage(HttpSession session, Model model) {
         if (!isAdmin(session)) return "redirect:/";
         model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("product", new Product());
         return "admin-product";
     }
 
