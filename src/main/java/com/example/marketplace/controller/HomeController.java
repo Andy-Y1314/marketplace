@@ -16,10 +16,4 @@ public class HomeController {
         model.addAttribute("products", productService.getAllProducts());
         return "home";
     }
-
-    @GetMapping("/addProduct")
-    public String addProduct() {
-        productService.addProduct();
-        return "redirect:/";
-    }
 }
