@@ -10,5 +10,38 @@
         <a th:href="@{/logout}">Logout</a>
     </div>
     <h1>This is the Admin page to CRUD products</h1>
+
+    <h2>Add / Edit Product</h2>
+    <form th:action="@{/admin/products/save}" th:object="${product}" method="post">
+        <input type="hidden" th:field="*{productId}" />
+
+        <p><input type="text" th:field="*{productName}" placeholder="Product Name"></p>
+
+        <p><input type="text" th:field="*{productPrice}" placeholder="Price"></p>
+
+        <p><input type="text" th:field="*{imageName}" placeholder="Image Name"></p>
+
+        <p><textarea th:field="*{productDescription}" placeholder="Description"></textarea></p>
+
+        <button type="submit">Save Product</button>
+    </form>
+
+    <hr>
+    <h2>Product List</h2>
+    <div th:each="product : ${products}" >
+
+        <p><strong th:text="${product.productName}"></strong></p>
+
+        <p>€ <span th:text="${product.productPrice}"></span></p>
+
+        <p th:text="${product.productDescription}"></p>
+
+        <p>
+            <a th:href="@{'/admin/products/edit/' + ${product.productId}}">Edit</a>
+            <a th:href="@{'/admin/products/delete/' + ${product.productId}}">Delete</a>
+        </p>
+        <hr>
+    </div>
+
 </body>
 </html>

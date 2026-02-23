@@ -11,15 +11,19 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public void addProduct() {
-        Product product = new Product();
-        product.setProductName("Harry Potter");
-        product.setProductPrice(8.3);
-        product.setImageName("cover.jpg");
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+    public void saveProduct(Product product) {
         productRepository.save(product);
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public Product getProductById(Integer id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
+    public void deleteProduct(Integer id) {
+        productRepository.deleteById(id);
     }
 }

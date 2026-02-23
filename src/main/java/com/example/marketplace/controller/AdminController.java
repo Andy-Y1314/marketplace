@@ -7,8 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin/products")
@@ -28,6 +27,30 @@ public class AdminController {
         model.addAttribute("product", new Product());
         return "admin-product";
     }
+
+    @PostMapping("/save")
+    public String saveProduct(@ModelAttribute Product product, HttpSession session) {
+        if (!isAdmin(session)) return "redirect:/";
+        productService.saveProduct(product);
+        return "redirect:/admin/products";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable Integer id, HttpSession session) {
+        if (!isAdmin(session)) return "redirect:/";
+        productService.deleteProduct(id);
+        return "redirect:/admin/products";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editProduct(@PathVariable Integer id, HttpSession session, Model model) {
+        if (!isAdmin(session)) return "redirect:/";
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
+        model.addAttribute("products", productService.getAllProducts());
+        return "admin-product";
+    }
+
 
     @GetMapping("/admin/customers")
     public String adminCustomer() {

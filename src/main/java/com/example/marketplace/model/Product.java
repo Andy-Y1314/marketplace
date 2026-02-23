@@ -14,6 +14,7 @@ public class Product {
     private String productName;
     private double productPrice;
     private String imageName;
+    private String productDescription;
 
     public int getProductId() {
         return productId;
@@ -45,5 +46,13 @@ public class Product {
 
     public void setImageName(String imageName) {
         this.imageName = imageName;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 }
