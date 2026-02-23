@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Product Detail</title>
 </head>
 <body>
-    <a href="/order/history">Order History</a>
-    <a href="/cart">Cart</a>
-    <a href="/">Back</a>
+    <a th:href="@{/cart}">Cart</a>
+    <a th:href="@{/order/history}">Order History</a>
+    <a th:href="@{/}">Back</a>
+    <hr>
+
+    <h1 th:text="${product.productName}"></h1>
+
+    <img th:src="@{'/images/' + ${product.imageName}}" width="250">
+
+    <p>
+        Price: €
+        <span th:text="${product.productPrice}"></span>
+    </p>
+
+    <p th:text="${product.productDescription}"></p>
 </body>
 </html>
