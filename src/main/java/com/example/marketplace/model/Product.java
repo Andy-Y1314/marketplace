@@ -13,7 +13,7 @@ public class Product {
 
     private String productName;
     private double productPrice;
-    private String imageName;
+    private String imageURL;
     private String productDescription;
 
     public int getProductId() {
@@ -40,12 +40,12 @@ public class Product {
         this.productPrice = productPrice;
     }
 
-    public String getImageName() {
-        return imageName;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
+    public void setImageURL(String imageName) {
+        this.imageURL = imageName;
     }
 
     public String getProductDescription() {

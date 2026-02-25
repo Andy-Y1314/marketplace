@@ -36,7 +36,7 @@
         <div class="product-container">
             <div th:each="product : ${products}" class="product-card">
                 <a th:href="@{'/products/detail/' + ${product.productId}}">
-                    <img th:src="@{'/images/' + ${product.imageName}}" alt="Book Image">
+                    <img th:src="${product.imageURL}" alt="Book Image">
                 </a>
                 <p><strong th:text="${product.productName}">Book Name</strong></p>
                 <p>Price: €<span th:text="${product.productPrice}">0.00</span></p>
