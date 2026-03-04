@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/admin/products")
+@RequestMapping("/admin")
 public class AdminController {
     @Autowired
     private ProductService productService;
@@ -20,7 +20,7 @@ public class AdminController {
         return user != null && user.isAdmin();
     }
 
-    @GetMapping
+    @GetMapping("/products")
     public String adminPage(HttpSession session, Model model) {
         if (!isAdmin(session)) return "redirect:/";
         model.addAttribute("products", productService.getAllProducts());
@@ -28,21 +28,21 @@ public class AdminController {
         return "admin-product";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/products/save")
     public String saveProduct(@ModelAttribute Product product, HttpSession session) {
         if (!isAdmin(session)) return "redirect:/";
         productService.saveProduct(product);
         return "redirect:/admin/products";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/products/delete/{id}")
     public String deleteProduct(@PathVariable Integer id, HttpSession session) {
         if (!isAdmin(session)) return "redirect:/";
         productService.deleteProduct(id);
         return "redirect:/admin/products";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/products/edit/{id}")
     public String editProduct(@PathVariable Integer id, HttpSession session, Model model) {
         if (!isAdmin(session)) return "redirect:/";
         Product product = productService.getProductById(id);
@@ -52,8 +52,9 @@ public class AdminController {
     }
 
 
-    @GetMapping("/admin/customers")
-    public String adminCustomer() {
+    @GetMapping("/customers")
+    public String adminCustomer(HttpSession session) {
+        if (!isAdmin(session)) return "redirect:/";
         return "admin-customer-order";
     }
 }
