@@ -3,22 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Product Detail</title>
+    <link rel="stylesheet" th:href="@{/css/product-detail.css}">
 </head>
 <body>
-    <a th:href="@{/cart}">Cart</a>
-    <a th:href="@{/order/history}">Order History</a>
-    <a th:href="@{/}">Back</a>
-    <hr>
+    <div class="top-bar">
+        <div class="top-links">
+            <a class="nav-btn" th:href="@{/order/history}">Order History</a>
+            <a class="nav-btn" th:href="@{/cart}">Cart</a>
+        </div>
+    </div>
 
-    <h1 th:text="${product.productName}"></h1>
+    <div class="detail-container">
+        <div class="left-section">
+            <img th:src="${product.imageURL}" alt="Book Image">
+        </div>
 
-    <img th:src="${product.imageURL}" width="250">
+        <div class="right-section">
+            <h1 th:text="${product.productName}">Book Name</h1>
 
-    <p>
-        Price: €
-        <span th:text="${product.productPrice}"></span>
-    </p>
+            <div class="description-box">
+                <p th:text="${product.productDescription}">Description</p>
+            </div>
 
-    <p th:text="${product.productDescription}"></p>
+            <div class="purchase-box">
+                <p class="price">
+                    Price: €<span th:text="${product.productPrice}">0.00</span>
+                </p>
+
+                <form th:action="@{'/cart/add/' + ${product.productId}}" method="post">
+                    <button type="submit" class="action-btn">Add to Cart</button>
+                </form>
+
+                <a class="back-btn" th:href="@{/}">Back</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
