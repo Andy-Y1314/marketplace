@@ -1,47 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Admin-Product</title>
+    <link rel="stylesheet" th:href="@{/css/admin-product.css}">
 </head>
 <body>
-    <div>
-        <a th:href="@{/}">Home</a>
-        <a th:href="@{/logout}">Logout</a>
-    </div>
-    <h1>This is the Admin page to CRUD products</h1>
-
-    <h2>Add / Edit Product</h2>
-    <form th:action="@{/admin/products/save}" th:object="${product}" method="post">
-        <input type="hidden" th:field="*{productId}" />
-
-        <p><input type="text" th:field="*{productName}" placeholder="Product Name"></p>
-
-        <p><input type="text" th:field="*{productPrice}" placeholder="Price"></p>
-
-        <p><input type="text" th:field="*{imageURL}" placeholder="Image URL"></p>
-
-        <p><textarea th:field="*{productDescription}" placeholder="Description"></textarea></p>
-
-        <button type="submit">Save Product</button>
-    </form>
-
-    <hr>
-    <h2>Product List</h2>
-    <div th:each="product : ${products}" >
-
-        <p><strong th:text="${product.productName}"></strong></p>
-
-        <p>€ <span th:text="${product.productPrice}"></span></p>
-
-        <p th:text="${product.productDescription}"></p>
-
-        <p>
-            <a th:href="@{'/admin/products/edit/' + ${product.productId}}">Edit</a>
-            <a th:href="@{'/admin/products/delete/' + ${product.productId}}">Delete</a>
-        </p>
-        <hr>
+    <div class="top-bar">
+        <div class="top-links">
+            <a class="nav-btn" th:href="@{/}">Home</a>
+            <a class="nav-btn" th:href="@{/admin/customers}">View Orders</a>
+            <a class="nav-btn" th:href="@{/logout}">Logout</a>
+        </div>
     </div>
 
+    <div class="admin-container">
+        <div class="form-card">
+            <h2>Add / Edit Product</h2>
+            <form th:action="@{/admin/products/save}" th:object="${product}" method="post">
+                <input type="hidden" th:field="*{productId}" />
+
+                <p><input class="form-input" type="text" th:field="*{productName}" placeholder="Product Name"></p>
+
+                <p><input class="form-input" type="text" th:field="*{productPrice}" placeholder="Price"></p>
+
+                <p><input class="form-input" type="text" th:field="*{imageURL}" placeholder="Image URL"></p>
+
+                <p><textarea class="form-input form-textarea" th:field="*{productDescription}" placeholder="Description"></textarea></p>
+
+                <p><input class="form-input" type="text" th:field="*{genre}" placeholder="Genre"></p>
+
+                <p><input class="form-input" type="text" th:field="*{author}" placeholder="Author"></p>
+
+                <p>
+                    <label>Rating</label>
+                    <select class="form-input" th:field="*{rating}">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </p>
+
+                <p class="checkbox-row">
+                    <label>Visible</label>
+                    <input type="checkbox" th:field="*{visible}">
+                </p>
+
+                <button type="submit" class="save-btn">Save Product</button>
+            </form>
+        </div>
+
+        <div class="product-section">
+            <h2>Product List</h2>
+
+            <div class="product-container">
+                <div class="product-card" th:each="product : ${products}">
+                    <p class="product-title"><strong th:text="${product.productName}"></strong></p>
+
+                    <img th:src="${product.imageURL}" alt="Product Image">
+
+                    <p>€ <span th:text="${product.productPrice}"></span></p>
+
+                    <p><strong>Genre:</strong> <span th:text="${product.genre}"></span></p>
+                    <p><strong>Author:</strong> <span th:text="${product.author}"></span></p>
+                    <p><strong>Rating:</strong> <span th:text="${product.rating}"></span></p>
+                    <p><strong>Visible:</strong> <span th:text="${product.visible ? 'Yes' : 'No'}"></span></p>
+
+                    <div class="card-buttons">
+                        <a class="nav-btn" th:href="@{'/admin/products/edit/' + ${product.productId}}">Edit</a>
+                        <a class="nav-btn" th:href="@{'/admin/products/delete/' + ${product.productId}}">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
