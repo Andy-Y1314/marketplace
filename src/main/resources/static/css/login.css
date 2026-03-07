@@ -1,0 +1,43 @@
+body {
+    background-color: #FFD1C1;
+    text-align: center;
+}
+
+.login-box {
+    background-color: white;
+    width: 300px;
+    min-height: 350px;
+    margin: 100px auto;
+    padding: 30px;
+    border: 1px solid black;
+}
+
+
+form {
+    margin-top: 10px;
+}
+
+input, button {
+    width: 220px;
+    margin: 10px;
+    padding: 6px;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+button {
+    background-color: #FFD1C1;
+    cursor: pointer;
+}
+
+button:hover {
+    color: white;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: #FFD1C1;
+}

@@ -3,19 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
-    <h1>Login</h1>
 
-    <form th:action="@{/login}" th:object="${user}" method="post">
-        <input th:field="*{username}" placeholder="Username"><br>
-        <input th:field="*{password}" placeholder="Password"><br>
-        <button type="submit">Sign In</button><br>
-        <a th:href="@{/register}">Create Account</a>
-    </form>
+    <div class="login-box">
+        <h1>Login</h1>
+
+        <form th:action="@{/login}" th:object="${user}" method="post">
+            <input th:field="*{username}" placeholder="Username"><br>
+            <input th:field="*{password}" type="password" placeholder="Password"><br>
+            <button type="submit">Sign In</button><br>
+            <a th:href="@{/register}">Register Account</a>
+        </form>
+    </div>
 
     <script th:inline="javascript" th:if="${loginError}">
         alert('[[${loginError}]]');
     </script>
+
 </body>
 </html>

@@ -1,0 +1,58 @@
+body {
+    background-color: #FFD1C1;
+    text-align: center;
+}
+
+.register-box {
+    background-color: white;
+    width: 300px;
+    min-height: 350px;
+    margin: 100px auto;
+    padding: 30px;
+    border: 1px solid black;
+}
+
+input, button, select {
+    width: 220px;
+    margin: 10px;
+    padding: 6px;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+button {
+    background-color: #FFD1C1;
+}
+
+button:hover {
+    color: white;
+}
+
+a {
+    color: black;
+    display: block;
+    margin-top: 10px;
+}
+
+a:hover {
+    color: #FFD1C1;
+}
+
+.role-row {
+    width: 240px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.role-row label {
+    width: 55px;
+}
+
+.role-row select {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}

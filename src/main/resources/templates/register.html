@@ -3,15 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <link rel="stylesheet" th:href="@{/css/register.css}">
 </head>
 <body>
-    <h1>Register Account</h1>
+    <div class="register-box">
+        <h1>Register Account</h1>
 
-    <form th:action="@{/register}" th:object="${user}" method="post">
-        <input type="text" th:field="*{username}" placeholder="Username"><br>
-        <input type="password" th:field="*{password}" placeholder="Password"><br>
-        <button type="submit">Register</button><br>
-        <a th:href="@{/login}">Already have an account?</a>
-    </form>
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <input type="text" th:field="*{username}" placeholder="Username">
+            <input type="password" th:field="*{password}" placeholder="Password">
+
+            <div class="role-row">
+                <label for="admin">Role:</label>
+                <select id="admin" th:field="*{admin}">
+                    <option th:value="false">Customer</option>
+                    <option th:value="true">Admin</option>
+                </select>
+            </div>
+
+            <button type="submit">Register</button>
+            <a th:href="@{/login}">Already have an account?</a>
+        </form>
+    </div>
 </body>
 </html>
