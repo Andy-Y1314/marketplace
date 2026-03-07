@@ -1,0 +1,125 @@
+body {
+    background-color: #FFD1C1;
+    padding: 12px;
+}
+
+.top-bar {
+    background-color: white;
+    border: 1px solid black;
+    padding: 8px 14px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.top-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.nav-btn,
+.update-btn,
+.remove-btn,
+.pay-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    background-color: #FFD1C1;
+    border: 1px solid black;
+    padding: 6px 16px;
+    min-width: 90px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-right: 8px;
+}
+
+.nav-btn:hover,
+.update-btn:hover,
+.remove-btn:hover {
+    color: white;
+}
+
+.cart-container {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.cart-box {
+    width: 75%;
+    margin: 30px auto;
+    background: white;
+    border: 1px solid black;
+}
+
+.cart-header,
+.cart-row {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1.5fr 1fr;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid black;
+}
+
+.cart-row:last-child {
+    border-bottom: none;
+}
+
+.product-cell {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+}
+
+.product-cell img {
+    width: 70px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid black;
+}
+
+.quantity-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-form input {
+    width: 50px;
+    padding: 8px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.cart-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pay-btn {
+    width: 160px;
+    background-color: white;
+}
+
+.pay-btn:hover {
+    color: #f5b8a3;
+}
+
+
+.back-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    padding: 6px 16px;
+    min-width: 90px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-right: 8px;
+}
+
+.back-btn:hover {
+    color: #f5b8a3;
+}
