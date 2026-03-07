@@ -1,38 +1,72 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Book Shop Home</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}">
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Book Shop Home</title>
+        <link rel="stylesheet" th:href="@{/css/home.css}">
+    </head>
+    <body>
 
-    <div>
-        <span th:if="${session.user != null}">
-            <strong>
-                Welcome, <span th:text="${session.user.username}">User</span>
-            </strong>
+        <div class="top-bar">
+            <div class="top-content" th:if="${session.user != null}">
+                <strong>Welcome! <span th:text="${session.user.username}">User</span></strong>
 
-            <span th:if="${session.user.admin}">
-                <a th:href="@{/admin/products}">Manage Products</a>
-            </span>
+                <div class="top-links">
+                    <span th:if="${session.user.admin}">
+                        <a class="nav-btn" th:href="@{/admin/products}">Manage Products</a>
+                        <a class="nav-btn" th:href="@{/admin/customers}">View Orders</a>
+                    </span>
 
-            <span th:if="${!session.user.admin}">
-                <a th:href="@{/cart}">Cart</a>
-                <a th:href="@{/order/history}">Order History</a>
-            </span>
+                    <span th:if="${!session.user.admin}">
+                        <a class="nav-btn" th:href="@{/cart}">Cart</a>
+                        <a class="nav-btn" th:href="@{/order/history}">Order History</a>
+                    </span>
 
-            <a th:href="@{/logout}">Logout</a>
-        </span>
+                    <a class="nav-btn" th:href="@{/logout}">Logout</a>
+                </div>
+            </div>
 
-        <span th:if="${session.user == null}">
-            <a th:href="@{/login}">Login</a>
-            <a th:href="@{/cart}">Cart</a>
-        </span>
-    </div>
+            <div class="top-content" th:if="${session.user == null}">
+                <div></div>
+                <div class="top-links">
+                    <a class="nav-btn" th:href="@{/login}">Login</a>
+                </div>
+            </div>
+        </div>
 
-    <section>
+        <div class="filter-section">
+            <form th:action="@{/}" method="get" th:object="${filter}" class="filter-form">
+                <div class="filter-row">
+                    <label>Genre</label>
+                    <input type="text" th:field="*{genre}" placeholder="Genre">
+                </div>
+
+                <div class="filter-row">
+                    <label>Author</label>
+                    <input type="text" th:field="*{author}" placeholder="Author">
+                </div>
+
+                <div class="filter-row">
+                    <label>Minimum Rating</label>
+                    <select th:field="*{rating}">
+                        <option value="">Any</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <div class="filter-actions">
+                    <button type="submit">Filter</button>
+                    <a class="clear-btn" th:href="@{/}">Clear</a>
+                </div>
+            </form>
+        </div>
+
         <h2>Available Books</h2>
+
         <div class="product-container">
             <div th:each="product : ${products}" class="product-card">
                 <a th:href="@{'/products/detail/' + ${product.productId}}">
@@ -40,9 +74,13 @@
                 </a>
                 <p><strong th:text="${product.productName}">Book Name</strong></p>
                 <p>Price: €<span th:text="${product.productPrice}">0.00</span></p>
+
+                <form th:action="@{'/cart/add/' + ${product.productId}}" method="post"
+                      th:if="${session.user != null and !session.user.admin}">
+                    <button type="submit">Add to Cart</button>
+                </form>
             </div>
         </div>
-    </section>
 
-</body>
-</html>
+    </body>
+    </html>
