@@ -1,13 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Order History</title>
+    <link rel="stylesheet" th:href="@{/css/order-history.css}">
 </head>
 <body>
-    <a href="/order/history">Order History</a>
-    <a href="/cart">Cart</a>
-    <a href="/">Home</a>
-    <h1>This is the Order History Page</h1>
+    <div class="top-bar">
+        <div class="top-links">
+            <a class="nav-btn" th:href="@{/}">Home</a>
+            <a class="nav-btn" th:href="@{/cart}">Cart</a>
+        </div>
+    </div>
+
+    <h1>Order History</h1>
+    <div th:if="${orders.isEmpty()}" class="no-orders"><p>No orders yet.</p></div>
+
+    <div class="order-container">
+        <div class="order-card" th:each="order : ${orders}">
+            <h3>Order #<span th:text="${order.shopOrderId}"></span></h3>
+            <p><strong>Status:</strong> <span th:text="${order.status}"></span></p>
+            <p><strong>Total:</strong> €<span th:text="${order.totalAmount}"></span></p>
+            <p><strong>Placed:</strong> <span th:text="${order.orderTime}"></span></p>
+
+            <div class="order-product" th:each="op : ${order.shopOrderProducts}">
+                <img th:src="${op.imageURL}" alt="Product Image">
+                <div class="product-info">
+                    <p><strong th:text="${op.productName}"></strong></p>
+                    <p>Price: €<span th:text="${op.productPrice}"></span></p>
+                    <p>Qty: <span th:text="${op.quantity}"></span></p>
+                    <p>Subtotal: €<span th:text="${op.subtotal}"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
