@@ -1,4 +1,5 @@
 package com.example.marketplace.controller;
+import com.example.marketplace.ProductFilter;
 import com.example.marketplace.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -12,8 +13,10 @@ public class HomeController {
     private ProductService productService;
 
     @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("products", productService.getAllProducts());
+    public String home(ProductFilter filter, Model model) {
+        model.addAttribute("products", productService.search(filter));
+        model.addAttribute("filter", filter);
+
         return "home";
     }
 }

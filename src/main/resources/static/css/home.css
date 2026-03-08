@@ -122,3 +122,11 @@ body {
     text-decoration: none;
     color: black;
 }
+
+.product-title {
+    min-height: 70px;
+}
+
+.product-price {
+    margin-top: 1px;
+}

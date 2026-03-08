@@ -18,10 +18,9 @@
 
     <div class="order-container">
         <div class="order-card" th:each="order : ${orders}">
-            <h3>Order #<span th:text="${order.shopOrderId}"></span></h3>
             <p><strong>Status:</strong> <span th:text="${order.status}"></span></p>
             <p><strong>Total:</strong> €<span th:text="${order.totalAmount}"></span></p>
-            <p><strong>Placed:</strong> <span th:text="${order.orderTime}"></span></p>
+            <p><strong>Placed:</strong> <span th:text="${order.forMattedOrderTime}"></span></p>
 
             <div class="order-product" th:each="op : ${order.shopOrderProducts}">
                 <img th:src="${op.imageURL}" alt="Product Image">

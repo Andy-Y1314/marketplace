@@ -72,8 +72,8 @@
                 <a th:href="@{'/products/detail/' + ${product.productId}}">
                     <img th:src="${product.imageURL}" alt="Book Image">
                 </a>
-                <p><strong th:text="${product.productName}">Book Name</strong></p>
-                <p>Price: €<span th:text="${product.productPrice}">0.00</span></p>
+                <p class="product-title"><strong th:text="${product.productName}">Book Name</strong></p>
+                <p class="product-price">Price: €<span th:text="${product.productPrice}">0.00</span></p>
 
                 <form th:action="@{'/cart/add/' + ${product.productId}}" method="post"
                       th:if="${session.user != null and !session.user.admin}">

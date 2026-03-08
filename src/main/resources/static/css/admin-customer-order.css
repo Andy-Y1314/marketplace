@@ -1,0 +1,104 @@
+body {
+    background-color: #FFD1C1;
+    padding: 12px;
+}
+
+.top-bar {
+    background-color: white;
+    border: 1px solid black;
+    padding: 8px 14px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.top-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.nav-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    background-color: #FFD1C1;
+    border: 1px solid black;
+    padding: 6px 16px;
+    min-width: 90px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.nav-btn:hover {
+    color: white;
+}
+
+h1 {
+    text-align: center;
+}
+
+.no-orders {
+    text-align: center;
+}
+
+.order-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 0 12px 12px 12px;
+}
+
+.order-card {
+    width: 100%;
+    max-width: 900px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.order-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.order-card p {
+    margin: 6px 0;
+}
+
+.status-form {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.status-form select,
+.status-form button {
+    padding: 6px 10px;
+    border: 1px solid black;
+    font: inherit;
+}
+
+.status-form button {
+    background-color: #FFD1C1;
+}
+
+.order-product {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid black;
+    align-items: flex-start;
+}
+
+.order-product img {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.product-info p {
+    margin: 4px 0;
+}

@@ -3,6 +3,7 @@ package com.example.marketplace.controller;
 import com.example.marketplace.model.Product;
 import com.example.marketplace.model.ShopUser;
 import com.example.marketplace.service.ProductService;
+import com.example.marketplace.service.ShopOrderService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private ShopOrderService shopOrderService;
 
     private boolean isAdmin(HttpSession session) {
         ShopUser user = (ShopUser) session.getAttribute("user");
@@ -51,10 +55,23 @@ public class AdminController {
         return "admin-product";
     }
 
+    @GetMapping("/orders")
+    public String adminOrders(HttpSession session, Model model) {
+        if (!isAdmin(session)) return "redirect:/";
+        model.addAttribute("orders", shopOrderService.allOrders());
+        return "admin-customer-order";
+    }
+
+    @PostMapping("/orders/{shopOrderId}/status")
+    public String updateOrderStatus(@PathVariable int shopOrderId, @RequestParam String status, HttpSession session) {
+        if (!isAdmin(session)) return "redirect:/";
+        shopOrderService.updateStatus(shopOrderId, status);
+        return "redirect:/admin/orders";
+    }
 
     @GetMapping("/customers")
     public String adminCustomer(HttpSession session) {
         if (!isAdmin(session)) return "redirect:/";
-        return "admin-customer-order";
+        return "redirect:/admin/orders";
     }
 }

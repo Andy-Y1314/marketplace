@@ -11,7 +11,6 @@ public class ShopUserService {
     ShopUserRepository shopUserRepository;
 
     public void registerUser(ShopUser user) {
-        user.setAdmin(false);
         shopUserRepository.save(user);
     }
 

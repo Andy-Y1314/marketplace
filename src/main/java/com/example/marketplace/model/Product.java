@@ -15,6 +15,11 @@ public class Product {
     private double productPrice;
     private String imageURL;
     private String productDescription;
+    private boolean visible = true;
+
+    private String genre;
+    private String author;
+    private int rating;
 
     public int getProductId() {
         return productId;
@@ -54,5 +59,37 @@ public class Product {
 
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

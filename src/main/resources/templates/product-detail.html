@@ -8,8 +8,9 @@
 <body>
     <div class="top-bar">
         <div class="top-links">
-            <a class="nav-btn" th:href="@{/order/history}">Order History</a>
-            <a class="nav-btn" th:href="@{/cart}">Cart</a>
+            <a class="nav-btn" th:href="@{/order/history}" th:if="${session.user != null and !session.user.admin}">Order History</a>
+            <a class="nav-btn" th:href="@{/cart}" th:if="${session.user != null and !session.user.admin}">Cart</a>
+            <a class="nav-btn" th:href="@{/}" th:if="${session.user != null and session.user.admin}">Home</a>
         </div>
     </div>
 
@@ -30,7 +31,8 @@
                     Price: €<span th:text="${product.productPrice}">0.00</span>
                 </p>
 
-                <form th:action="@{'/cart/add/' + ${product.productId}}" method="post">
+                <form th:action="@{'/cart/add/' + ${product.productId}}" method="post"
+                      th:if="${session.user != null and !session.user.admin}">
                     <button type="submit" class="action-btn">Add to Cart</button>
                 </form>
 

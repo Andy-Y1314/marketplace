@@ -1,6 +1,7 @@
 package com.example.marketplace.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,5 +59,9 @@ public class ShopOrder {
 
     public List<ShopOrderProducts> getShopOrderProducts() {
         return shopOrderProducts;
+    }
+
+    public String getForMattedOrderTime() {
+        return orderTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 }

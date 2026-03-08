@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Admin-Customer</title>
+    <link rel="stylesheet" th:href="@{/css/admin-customer-order.css}">
 </head>
 <body>
-    <h1>This is the Admin page that views Customer order</h1>
+    <div class="top-bar">
+        <div class="top-links">
+            <a class="nav-btn" th:href="@{/admin/products}">Manage Products</a>
+            <a class="nav-btn" th:href="@{/logout}">Logout</a>
+        </div>
+    </div>
+
+    <h1>All Customer Orders</h1>
+
+    <div th:if="${orders.isEmpty()}" class="no-orders">
+        <p>No orders found.</p>
+    </div>
+
+    <div class="order-container">
+        <div th:each="order : ${orders}" class="order-card">
+            <h3>Order #<span th:text="${order.shopOrderId}"></span></h3>
+            <p>User: <span th:text="${order.user.username}"></span></p>
+            <p>Total: €<span th:text="${order.totalAmount}"></span></p>
+            <p>Placed: <span th:text="${order.forMattedOrderTime}"></span></p>
+
+            <form th:action="@{'/admin/orders/' + ${order.shopOrderId} + '/status'}" method="post" class="status-form">
+                <select name="status">
+                    <option value="PROCESSING" th:selected="${order.status == 'PROCESSING'}">PROCESSING</option>
+                    <option value="COMPLETED" th:selected="${order.status == 'COMPLETED'}">COMPLETED</option>
+                </select>
+                <button type="submit">Update Status</button>
+            </form>
+
+            <div th:each="op : ${order.shopOrderProducts}" class="order-product">
+                <img th:src="${op.imageURL}" alt="Product Image" width="100">
+                <div class="product-info">
+                    <p><span th:text="${op.productName}"></span></p>
+                    <p>€<span th:text="${op.productPrice}"></span></p>
+                    <p>Quantity: <span th:text="${op.quantity}"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
